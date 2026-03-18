@@ -246,7 +246,7 @@ export function DropdownMenuUser({ trigger }: { trigger: ReactNode }) {
             variant="outline"
             size="sm"
             className="w-full"
-            onClick={() => signOut()}
+            onClick={() => signOut({ callbackUrl: '/signin' })}
           >
             Logout
           </Button>
