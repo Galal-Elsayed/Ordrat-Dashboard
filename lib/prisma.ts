@@ -2,23 +2,42 @@
 // This allows the project to run without a database setup
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const createMockModel = () => ({
-  findUnique: async () => null,
-  findFirst: async () => null,
-  findMany: async () => [],
-  create: async (args: { data: unknown }) => args.data,
-  update: async (args: { data: unknown }) => args.data,
-  updateMany: async () => ({ count: 0 }),
-  delete: async () => ({}),
-  deleteMany: async () => ({ count: 0 }),
-  count: async () => 0,
-  findFirstOrThrow: async () => {
+type AnyRecord = Record<string, any>;
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const createMockModel = (): any => ({
+  findUnique: async (_args?: AnyRecord): Promise<AnyRecord | null> => null,
+  findFirst: async (_args?: AnyRecord): Promise<AnyRecord | null> => null,
+  findMany: async (_args?: AnyRecord): Promise<AnyRecord[]> => [],
+  create: async (args: { data: AnyRecord }): Promise<AnyRecord> => args.data,
+  update: async (args: { data: AnyRecord }): Promise<AnyRecord> => args.data,
+  updateMany: async (_args?: AnyRecord) => ({ count: 0 }),
+  delete: async (_args?: AnyRecord): Promise<AnyRecord> => ({}),
+  deleteMany: async (_args?: AnyRecord) => ({ count: 0 }),
+  count: async (_args?: AnyRecord): Promise<number> => 0,
+  findFirstOrThrow: async (_args?: AnyRecord): Promise<AnyRecord> => {
     throw new Error('Not found');
   },
-  upsert: async (args: { create: unknown }) => args.create,
+  upsert: async (args: { create: AnyRecord }): Promise<AnyRecord> => args.create,
 });
 
-export const prisma = {
+type MockModel = ReturnType<typeof createMockModel>;
+
+interface PrismaClient {
+  user: MockModel;
+  userRole: MockModel;
+  userPermission: MockModel;
+  userRolePermission: MockModel;
+  verificationToken: MockModel;
+  systemSetting: MockModel;
+  systemLog: MockModel;
+  account: MockModel;
+  session: MockModel;
+  $transaction: (fn: ((tx: PrismaClient) => Promise<unknown>) | Promise<unknown>[]) => Promise<unknown>;
+  $disconnect: () => Promise<void>;
+}
+
+export const prisma: PrismaClient = {
   user: createMockModel(),
   userRole: createMockModel(),
   userPermission: createMockModel(),
@@ -28,7 +47,7 @@ export const prisma = {
   systemLog: createMockModel(),
   account: createMockModel(),
   session: createMockModel(),
-  $transaction: async (fn: ((tx: typeof prisma) => Promise<unknown>) | Promise<unknown>[]) => {
+  $transaction: async (fn: ((tx: PrismaClient) => Promise<unknown>) | Promise<unknown>[]) => {
     if (typeof fn === 'function') return fn(prisma);
     return Promise.all(fn);
   },
