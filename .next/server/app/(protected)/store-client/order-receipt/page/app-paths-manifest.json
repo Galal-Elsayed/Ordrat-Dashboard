@@ -1,0 +1,3 @@
+{
+  "/(protected)/store-client/order-receipt/page": "app/(protected)/store-client/order-receipt/page.js"
+}

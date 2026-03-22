@@ -1,0 +1,18 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/(protected)/layout,_N_T_/(protected)/account/layout,_N_T_/(protected)/account/members/layout,_N_T_/(protected)/account/members/team-info/layout,_N_T_/(protected)/account/members/team-info/page,_N_T_/account/members/team-info"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/!KHByb3RlY3RlZCk/account/members/team-info/__PAGE__",
+    "/!KHByb3RlY3RlZCk/account/members/team-info",
+    "/!KHByb3RlY3RlZCk/account/members",
+    "/!KHByb3RlY3RlZCk/account",
+    "/!KHByb3RlY3RlZCk",
+    "/_index",
+    "/_head"
+  ]
+}

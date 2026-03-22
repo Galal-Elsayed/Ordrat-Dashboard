@@ -1,0 +1,18 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/(protected)/layout,_N_T_/(protected)/account/layout,_N_T_/(protected)/account/security/layout,_N_T_/(protected)/account/security/backup-and-recovery/layout,_N_T_/(protected)/account/security/backup-and-recovery/page,_N_T_/account/security/backup-and-recovery"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/!KHByb3RlY3RlZCk/account/security/backup-and-recovery/__PAGE__",
+    "/!KHByb3RlY3RlZCk/account/security/backup-and-recovery",
+    "/!KHByb3RlY3RlZCk/account/security",
+    "/!KHByb3RlY3RlZCk/account",
+    "/!KHByb3RlY3RlZCk",
+    "/_index",
+    "/_head"
+  ]
+}
